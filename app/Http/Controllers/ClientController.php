@@ -69,6 +69,6 @@ class ClientController extends Controller
     public function destroy(string $id)
     {
         Client::destroy($id);
-        return redirect()->route('clients.index');
+        return response()->json()->setStatusCode(200);
     }
 }

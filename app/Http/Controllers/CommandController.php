@@ -71,6 +71,6 @@ class CommandController extends Controller
     public function destroy(string $id)
     {
         commande::destroy($id);
-        return redirect("/commands");
+        return response()->json()->setStatusCode(200);
     }
 }

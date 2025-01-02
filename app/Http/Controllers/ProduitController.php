@@ -74,6 +74,6 @@ class ProduitController extends Controller
     public function destroy(string $id)
     {
         Produit::destroy($id);
-        return redirect("/produits");
+        return response()->json()->setStatusCode(200);
     }
 }

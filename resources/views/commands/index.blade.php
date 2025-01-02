@@ -46,7 +46,8 @@
                             <form action="{{ route('commands.destroy', $item->id) }}" method="post" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="handelDelete('commands', {{ $item->id }}, event)">
+                                <button type="submit" class="btn btn-sm btn-outline-danger" 
+                                onclick="handelDelete(event, '{{ $item->name }}',this)">
                                     Supprimer
                                 </button>
                             </form>
@@ -61,3 +62,4 @@
 </div>
 @endif
 </div>
+@vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/delete.js']),
