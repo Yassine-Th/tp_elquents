@@ -20,27 +20,27 @@
   
           <div class="mb-3">
             <label for="firstName" class="form-label">Prénom:</label>
-            <input type="text" name="firstName" id="firstName" class="form-control">
+            <input  type="text" name="firstName" required id="firstName" class="form-control">
           </div>
   
           <div class="mb-3">
             <label for="lastName" class="form-label">Nom de famille:</label>
-            <input type="text" name="lastName" id="lastName" class="form-control">
+            <input  type="text" name="lastName" id="lastName" class="form-control">
           </div>
   
           <div class="mb-3">
             <label for="phone" class="form-label">Téléphone:</label>
-            <input type="tel" name="phone" id="phone" class="form-control">
+            <input  type="tel" name="phone" id="phone" class="form-control">
           </div>
   
           <div class="mb-3">
             <label for="city" class="form-label">Ville:</label>
-            <input type="text" name="city" id="city" class="form-control">
+            <input  type="text" name="city" id="city" class="form-control">
           </div>
   
           <div class="mb-3">
             <label for="birthDay" class="form-label">Date de naissance:</label>
-            <input type="date" name="birthDay" id="birthDay" class="form-control">
+            <input  type="date" name="birthDay" id="birthDay" class="form-control">
           </div>
   
           <div class="text-end">

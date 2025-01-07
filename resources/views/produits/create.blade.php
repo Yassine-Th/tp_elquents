@@ -20,22 +20,22 @@
   
           <div class="mb-3">
             <label for="name" class="form-label">Nom:</label>
-            <input type="text" name="name" id="name" class="form-control">
+            <input required type="text" name="name" id="name" class="form-control">
           </div>
   
           <div class="mb-3">
             <label for="description" class="form-label">Description:</label>
-            <input type="text" name="description" id="description" class="form-control">
+            <input required type="text" name="description" id="description" class="form-control">
           </div>
   
           <div class="mb-3">
             <label for="price" class="form-label">Prix:</label>
-            <input type="text" name="price" id="price" class="form-control">
+            <input required type="text" name="price" id="price" class="form-control">
           </div>
   
           <div class="mb-3">
             <label for="stock" class="form-label">Stock:</label>
-            <input type="text" name="stock" id="stock" class="form-control">
+            <input required type="text" name="stock" id="stock" class="form-control">
           </div>
   
           <div class="mb-3">

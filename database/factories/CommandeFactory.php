@@ -18,7 +18,8 @@ class CommandeFactory extends Factory
     public function definition(): array
     {
         return [
-            "client_id"=>Client::inRandomOrder()->first()->id
+            "client_id"=>Client::inRandomOrder()->first()->id,
+            "etat"=>fake()->randomElement(["confirme","livrer","recu","refuser"]),
         ];
     }
 }

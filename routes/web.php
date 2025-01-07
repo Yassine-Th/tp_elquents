@@ -29,3 +29,7 @@ Route::delete("/clients/{id}",[ClientController::class,"destroy"])->name("client
 Route::resource("produits",ProduitController::class);
 
 Route::resource("commands",CommandController::class);
+
+Route::get('/produits/filter/{categorie_id}', [ProduitController::class, 'filterByCategorie']);
+
+Route::get('/commands/filter/{etat?}', [CommandController::class, 'filterByEtat']);

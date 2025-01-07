@@ -20,17 +20,17 @@
   
           <div class="mb-3">
             <label for="date" class="form-label">Date:</label>
-            <input type="date" name="date" id="date" class="form-control">
+            <input required type="date" name="date" id="date" class="form-control">
           </div>
   
           <div class="mb-3">
             <label for="total" class="form-label">Total:</label>
-            <input type="text" name="total" class="form-control">
+            <input required type="text" name="total" class="form-control">
           </div>
   
           <div class="mb-3">
             <label for="client_id" class="form-label">Client ID:</label>
-            <input type="text" name="client_id" class="form-control">
+            <input required type="text" name="client_id" class="form-control">
           </div>
   
           <div class="text-end">

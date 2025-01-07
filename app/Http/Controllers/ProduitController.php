@@ -15,7 +15,8 @@ class ProduitController extends Controller
     public function index()
     {
         $produits = Produit::all();
-        return view("produits.index",compact("produits"));
+        $cat = Categorie::all();
+        return view("produits.index",compact("produits","cat"));
     }
 
     /**
@@ -76,4 +77,14 @@ class ProduitController extends Controller
         Produit::destroy($id);
         return response()->json()->setStatusCode(200);
     }
+    public function filterByCategorie($categorie_id)
+{
+    if ($categorie_id == -1) {
+        $produits = Produit::with('categorie')->get();
+    } else {
+        $produits = Produit::where('categorie_id', $categorie_id)->with('categorie')->get();
+    }
+    
+    return response()->json($produits);
+}
 }

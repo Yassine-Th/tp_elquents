@@ -22,3 +22,15 @@ const handelDelete = (event, name,button) => {
     }
 };
 window.handelDelete = handelDelete;
+
+function deletee(id){
+    fetch("/categories/"+id, {
+        "method":"DELETE",
+        headers:{"x-crsf-token":document.querySelector('meta[name="csrf-token"]').getAttribute('content')},
+    }).then(response => {
+        if (response.ok) {
+            document.getElementById("category"+id).remove();
+        }
+    })
+    }
+        

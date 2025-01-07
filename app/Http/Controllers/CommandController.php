@@ -14,7 +14,8 @@ class CommandController extends Controller
     public function index()
     {
         $commands = commande::all();
-        return view("commands.index",compact("commands"));
+        $status = ["confirme","livrer","recu","refuser"];
+        return view("commands.index",compact("commands","status"));
     }
 
     /**
@@ -73,4 +74,18 @@ class CommandController extends Controller
         commande::destroy($id);
         return response()->json()->setStatusCode(200);
     }
+
+
+public function filterByEtat($etat = null)
+{
+			
+        if ($etat === null || $etat === "all") {
+					$commands = commande::all();
+        } else {
+            $commands = commande::where('etat', $etat)->get();
+
+        }
+        return response()->json($commands);
+
+}
 }

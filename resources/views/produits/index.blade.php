@@ -10,58 +10,110 @@
             <p>Aucun produit disponible.</p>
         </div>
     @else
+        <div class="d-flex justify-content-center align-items-center mb-4">
+					<div class="form-group">
+						<h4>
+              filtrer les produits :
+            </h4>
+						<select name="categorie" class="form-select"  onchange="handelCategorie(this)">
+							<option value="-1" selected>all</option>
+							@foreach ($cat as $c)
+								<option value="{{ $c->id }}">{{ $c->name }}</option>
+							@endforeach
+						</select>
+					</div>
+            
+        </div>
         <div class="card shadow-sm">
             <div class="card-header bg-light">
                 <h5 class="mb-0">Nombre des produits : {{ count($produits) }}</h5>
             </div>
             <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle">
-                        <thead class="table-light">
-                            <tr>
-                                <th>ID</th>
-                                <th>Nom</th>
-                                <th>Description</th>
-                                <th>Prix</th>
-                                <th>Stock</th>
-                                <th>Catégorie</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($produits as $item)
-                                <tr>
-                                    <td>{{ $item->id }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>{{ $item->description }}</td>
-                                    <td>{{ $item->price }}</td>
-                                    <td>{{ $item->stock }}</td>
-                                    <td>{{ $item->categorie()->find($item->categorie_id)->name }}</td>
-                                    <td>
-                                        <div class="d-flex gap-2">
-                                            <a href="{{ route('produits.show', $item->id) }}" class="btn btn-sm btn-outline-primary">
-                                                Détails
-                                            </a>
-                                            <a href="{{ route('produits.edit', ['produit' => $item->id]) }}" class="btn btn-sm btn-outline-secondary">
-                                                Modifier
-                                            </a>
-                                            <form action="{{ route('produits.destroy', $item->id) }}" method="post" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-outline-danger"
-                                                onclick="handelDelete(event, '{{ $item->name }}',this)">
-                                                    Supprimer
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+				<div class="table-responsive">
+<table class="table table-hover align-middle">
+<thead class="table-light">
+		<tr>
+				<th>ID</th>
+				<th>Nom</th>
+				<th>Description</th>
+				<th>Prix</th>
+				<th>Stock</th>
+				<th>Catégorie</th>
+				<th>Actions</th>
+		</tr>
+</thead>
+<tbody>
+		@foreach ($produits as $item)
+				<tr>
+						<td>{{ $item->id }}</td>
+						<td>{{ $item->name }}</td>
+						<td>{{ $item->description }}</td>
+						<td>{{ $item->price }}</td>
+						<td>{{ $item->stock }}</td>
+						<td>{{ $item->categorie()->find($item->categorie_id)->name }}</td>
+						<td>
+								<div class="d-flex gap-2">
+										<a href="{{ route('produits.show', $item->id) }}" class="btn btn-sm btn-outline-primary">
+												Détails
+										</a>
+										<a href="{{ route('produits.edit', ['produit' => $item->id]) }}" class="btn btn-sm btn-outline-secondary">
+												Modifier
+										</a>
+										<form action="{{ route('produits.destroy', $item->id) }}" method="post" class="d-inline">
+												@csrf
+												@method('DELETE')
+												<button type="submit" class="btn btn-sm btn-outline-danger"
+												onclick="handelDelete(event, '{{ $item->name }}',this)">
+														Supprimer
+												</button>
+										</form>
+								</div>
+						</td>
+				</tr>
+		@endforeach
+</tbody>
+</table>
+				</div>
             </div>
         </div>
     @endif
 </div>
 @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/delete.js']),
+
+<script>
+		function handelCategorie(e) {
+			fetch("/produits/filter/"+ e.value , {
+				method:"GET",
+
+			}).then(response => response.json()).then(
+				data => {
+					const tbody = document.querySelector("table tbody");
+            tbody.innerHTML = ""; // Clear existing rows
+
+            data.forEach(item => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${item.id}</td
+                    <td>${item.name}</td>
+                    <td>${item.description}</td>
+                    <td>${item.price}</td>
+                    <td>${item.stock}</td>
+                    <td>${item.categorie.name}</td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            <a href="{{ route('produits.show', '') }}/${item.id}" class="btn btn-sm btn-outline-primary">Détails</a>
+                            <a href="{{ route('produits.edit', '') }}/${item.id}" class="btn btn-sm btn-outline-secondary">Modifier</a>
+                            <form action="{{ route('produits.destroy', '') }}/${item.id}" method="post" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="handelDelete(event, '${item.name}', this)">Supprimer</button>
+                            </form>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            }); 
+				}
+			)
+		}
+</script>

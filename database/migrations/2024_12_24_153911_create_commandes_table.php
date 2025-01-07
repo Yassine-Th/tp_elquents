@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use function Psy\debug;
+
 return new class extends Migration
 {
     /**
@@ -14,7 +16,9 @@ return new class extends Migration
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
             $table->date("date")->default(now());
+            $table->string("etat")->default("En cours");
             $table->timestamps();
+
         });
     }
 
