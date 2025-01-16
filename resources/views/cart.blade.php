@@ -71,12 +71,14 @@
                 </button>
             </form>
             <a href="{{ route('home') }}" class="btn btn-secondary">Continue Shopping</a>
-            <button  class="btn btn-success" {{ $cart ? '' : 'disabled' }}>
-                <a href="{{ route("clients.create")}}" class="text-white">
+
+            <form action="{{ route("commander")}}" method="get" class="d-inline">
+                <input type="hidden" name="total" value="{{ $total }}">
+                <button type="submit" class="btn btn-primary">
                     Commander
-                </a>
-                
-            </button>
+                </button>
+            </form>
+            
         </div>
     @else
         <div class="text-center py-5">

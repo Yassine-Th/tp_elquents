@@ -45,3 +45,6 @@ Route::get('cart', [CartController::class, 'cart'])->name('cart.index');
 Route::delete('remove-from-cart', [CartController::class, 'removeFromCart'])->name('cart.remove');
 
 Route::post('clear-cart', [CartController::class, 'clearCart'])->name('cart.clear');
+
+Route::get("/commander",[CartController::class,"commander"])->name("commander");
+Route::post("/commander",[CartController::class,"saveCommand"])->name("saveCommand");

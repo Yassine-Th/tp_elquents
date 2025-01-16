@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\commande;
 use App\Models\Produit;
+use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -48,4 +51,23 @@ class CartController extends Controller
     session()->forget('cart');
     return redirect()->route('cart.index')->with('success', 'Cart has been cleared!');
 }
+
+    public function commander(Request $request){
+       $total = $request->input('total');
+        return view('commander',compact('total'));
+    }
+    public function saveCommand(Request $request){
+        dd($request);
+         $clients = Client::all();
+        $cl = $request->validate([
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'phone' => 'required',
+            "city" => 'required',
+            "birthDay" => 'required',
+        ]);
+        // if ($clients->contains($cl)) {
+        //     commande::create("total" => $request->total);
+        // }
+    }
 }
