@@ -14,7 +14,7 @@
             
             <ul class="navbar-nav d-flex flex-row gap-4 mb-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="/">Home</a>
+                    <a class="nav-link active" href="/home">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/categories">Categories</a>
@@ -27,6 +27,15 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/commands">Commands</a>
+                </li>
+                <!-- In your nav component -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('cart.index') }}">
+                        <i class="bi bi-cart"></i> Cart
+                        @if(session()->has('cart'))
+                            <span class="badge bg-primary">{{ count(session('cart')) }}</span>
+                        @endif
+                    </a>
                 </li>
             </ul>
         </div>

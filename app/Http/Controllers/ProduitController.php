@@ -33,9 +33,20 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        $produit = $request->all();
-        // dd($produit);
-        Produit::create($produit);
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'stock' => 'required',
+            'categorie_id' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('products/images', 'public');
+            $validatedData['image'] = $imagePath;
+        }
+        //  dd($validatedData);
+        Produit::create($validatedData);
         return redirect()->route("produits.index");
     }
 
@@ -63,9 +74,22 @@ class ProduitController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'stock' => 'required',
+            'categorie_id' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('products/images', 'public');
+            $validatedData['image'] = $imagePath;
+        }
+
         $produit = Produit::find($id);
-        $req = $request->all();
-        $produit->update($req);
+        
+        $produit->update($validatedData);
         return redirect("/produits");
     }
 

@@ -15,7 +15,7 @@
         <h5 class="mb-0">Ajouter un nouveau produit</h5>
       </div>
       <div class="card-body">
-        <form action="{{ route('produits.store') }}" method="post">
+        <form action="{{ route('produits.store') }}" method="post" enctype="multipart/form-data">
           @csrf
   
           <div class="mb-3">
@@ -40,11 +40,16 @@
   
           <div class="mb-3">
             <label for="categorie" class="form-label">Catégorie:</label>
-            <select name="categorie_id" class="form-select">
+            <select name="categorie_id" id="categorie" class="form-select">
               @foreach ($cat as $c)
                 <option value="{{ $c->id }}">{{ $c->name }}</option>
               @endforeach
             </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="stock" class="form-label">Image:</label>
+            <input type="file" name="image" id="image" accept="images/*" class="form-control">
           </div>
   
           <div class="text-end">

@@ -10,11 +10,18 @@
             <p><strong>Prix :</strong> {{ $produit->price }}</p>
             <p><strong>Stock :</strong> {{ $produit->stock }}</p>
             <p><strong>Catégorie :</strong> {{ $produit->categorie()->find($produit->categorie_id)->name }}</p>
+            <div>
+               <strong>Image :</strong>
+            <img src="{{ asset('storage/'.$produit->image) }}" alt="" class="img-fluid"> 
+            </div>
+            
         </div>
         <div class="card-footer text-end">
             <a href="{{ route('produits.index') }}" class="btn btn-secondary">
                 <i class="bi bi-arrow-left"></i> Retour vers la liste
             </a>
         </div>
-    </div>
+    </div>           
+     {{-- <img src="{{asset("atorage/products/images/977Wx9q3KvNs3kKEv3fkNP07bJD9E8SBpGcWznK8.jpg")}}" alt=""> --}}
+
 </div>

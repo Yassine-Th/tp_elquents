@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CommandController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProduitController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,3 +35,13 @@ Route::resource("commands",CommandController::class);
 Route::get('/produits/filter/{categorie_id}', [ProduitController::class, 'filterByCategorie']);
 
 Route::get('/commands/filter/{etat?}', [CommandController::class, 'filterByEtat']);
+
+Route::get("/home",[HomeController::class,"index"])->name("home");
+
+Route::post('add-to-cart/{produit}', [CartController::class, 'addToCart'])->name('cart.add');
+
+Route::get('cart', [CartController::class, 'cart'])->name('cart.index');
+
+Route::delete('remove-from-cart', [CartController::class, 'removeFromCart'])->name('cart.remove');
+
+Route::post('clear-cart', [CartController::class, 'clearCart'])->name('cart.clear');

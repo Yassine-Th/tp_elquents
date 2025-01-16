@@ -15,7 +15,7 @@
             <h5 class="mb-0">Modifier le produit numéro {{ $produit->id }}</h5>
         </div>
         <div class="card-body">
-            <form action="{{ route('produits.update', $produit->id) }}" method="post">
+            <form action="{{ route('produits.update', $produit->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -50,6 +50,12 @@
                         @endforeach
                     </select>
                 </div>
+
+                <div class="mb-3">
+                    <label for="stock" class="form-label">Image:</label>
+                    <img src="{{ asset('storage/'.$produit->image) }}" alt="">
+                    <input type="file" name="image" id="image" accept="images/*" class="form-control">
+                  </div>
 
                 <div class="text-end">
                     <button type="submit" class="btn btn-primary">
