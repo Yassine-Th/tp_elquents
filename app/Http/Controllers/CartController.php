@@ -25,7 +25,6 @@ class CartController extends Controller
             ];
         }
         
-        
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
@@ -57,17 +56,20 @@ class CartController extends Controller
         return view('commander',compact('total'));
     }
     public function saveCommand(Request $request){
-        dd($request);
-         $clients = Client::all();
-        $cl = $request->validate([
+        // dd($request);
+        $data = $request->validate([
             'firstName' => 'required',
             'lastName' => 'required',
             'phone' => 'required',
             "city" => 'required',
             "birthDay" => 'required',
         ]);
-        // if ($clients->contains($cl)) {
-        //     commande::create("total" => $request->total);
-        // }
+        Client::create($data);
+        commande::create([
+            "client_id" =>Client::latest()->first()->id,
+            "total" => $request->input('total'),
+            "etat" => "en cours"
+        ]);
+        return redirect()->route('home');
     }
 }
