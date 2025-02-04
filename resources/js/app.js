@@ -1,2 +1,7 @@
-import 'bootstrap';
-import '../css/app.css'; // Link your custom styles if needed
+import './bootstrap';
+
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+
+Alpine.start();

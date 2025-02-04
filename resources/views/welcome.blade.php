@@ -1,73 +1,101 @@
-<x-nav></x-nav>
+<!-- filepath: resources/views/welcome.blade.php -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Our Application</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Laravel</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+
+    <!-- Styles -->
+    <style>
+        html, body {
+            background-color: #fff;
+            color: #636b6f;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 200;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .full-height {
+            height: 100vh;
+        }
+
+        .flex-center {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .position-ref {
+            position: relative;
+        }
+
+        .top-right {
+            position: absolute;
+            right: 10px;
+            top: 18px;
+        }
+
+        .content {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 84px;
+        }
+
+        .links > a {
+            color: #636b6f;
+            padding: 0 25px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: .1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .m-b-md {
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
 <body>
+    <div class="flex-center position-ref full-height">
+        @if (Route::has('login'))
+            <div class="top-right links">
+                @auth
+                    <a href="{{ url('/dashboard') }}">Dashboard</a>
+                @else
+                    <a href="{{ route('login') }}">Log in</a>
 
-  <!-- Navigation Bar -->
- 
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}">Register</a>
+                    @endif
+                @endauth
+            </div>
+        @endif
 
-  <!-- Welcome Section -->
-  <div class="container mt-5">
-    <div class="text-center">
-      <h1 class="display-4">Welcome to Our Application!</h1>
+        <div class="content">
+            <div class="title m-b-md">
+                Laravel
+            </div>
 
+            <div class="links">
+                <a href="https://laravel.com/docs">Docs</a>
+                <a href="https://laracasts.com">Laracasts</a>
+                <a href="https://laravel-news.com">News</a>
+                <a href="https://blog.laravel.com">Blog</a>
+                <a href="https://nova.laravel.com">Nova</a>
+                <a href="https://forge.laravel.com">Forge</a>
+                <a href="https://vapor.laravel.com">Vapor</a>
+                <a href="https://github.com/laravel/laravel">GitHub</a>
+            </div>
+        </div>
     </div>
-
-    <!-- Features Section -->
-    <div class="row mt-4">
-      <div class="col-md-3">
-        <div class="card">
-          <div class="card-body text-center">
-            <h5 class="card-title"><i class="bi bi-person-lines-fill"></i> Clients</h5>
-            <p class="card-text">View and manage all your clients easily.</p>
-            <a href="{{ route('clients.index') }}" class="btn btn-primary">View Clients</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="card">
-          <div class="card-body text-center">
-            <h5 class="card-title"><i class="bi bi-box"></i> Products</h5>
-            <p class="card-text">Add, edit, and manage your products.</p>
-            <a href="{{ route('produits.index') }}" class="btn btn-primary">View Products</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="card">
-          <div class="card-body text-center">
-            <h5 class="card-title"><i class="bi bi-tags-fill"></i> Categories</h5>
-            <p class="card-text">Organize your products into categories for better management.</p>
-            <a href="{{ route('categories.index') }}" class="btn btn-primary">View Categories</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="card">
-          <div class="card-body text-center">
-            <h5 class="card-title"><i class="bi bi-file-earmark-text"></i> Commands</h5>
-            <p class="card-text">Track and manage orders placed by your clients.</p>
-            <a href="{{ route('commands.index') }}" class="btn btn-primary">View Orders</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

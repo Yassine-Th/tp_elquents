@@ -12,7 +12,7 @@
             <p><strong>Catégorie :</strong> {{ $produit->categorie()->find($produit->categorie_id)->name }}</p>
             <div>
                <strong>Image :</strong>
-            <img src="{{ asset('storage/'.$produit->image) }}" alt="" class="img-fluid"> 
+            <img src="{{ asset('storage/'.$produit->image) }}" alt="" class="img-fluid h-25"> 
             </div>
             
         </div>
